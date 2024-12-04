@@ -19,6 +19,7 @@
     * [Workaround 3 - Change order of tpl and "AsConfig" #2](#workaround-3---change-order-of-tpl-and-asconfig-2)
       * [Reusable helper template](#reusable-helper-template)
   * [Proposals for remediation](#proposals-for-remediation)
+  * [Repo with the example files](#repo-with-the-example-files)
 <!-- TOC -->
 
 I currently have the use case to template config files for fluent-bit.
@@ -435,3 +436,9 @@ In my mind I have the following proposals:
   so that calling this is less verbose and a central implementation is provided and tested.
 
 - Mark this as a non-issue/out of scope for Helm. I'm actually not sure that this is a valid approach and should be a supported use case.
+
+## Repo with the example files
+
+As this report and description got quite long,
+I created a repository containing this report and the example files:
+https://github.com/chrko/helm-tpl-asconfig-issue
