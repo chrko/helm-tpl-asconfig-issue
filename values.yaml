@@ -1,0 +1,10 @@
+filters:
+  extraEntries: |
+    [FILTER]
+        Name record_modifier
+        Match splunk
+        Remove_key kubernetes
+  extraYamlEntries:
+    - name: record_modifier
+      match: splunk
+      removeKey: kubernetes

@@ -1,0 +1,8 @@
+# fluent-bit/conf/fluent-bit.yaml
+# […]
+pipeline:
+  filters:
+    - name: kubernetes
+      # […]
+{{- toYaml .Values.filters.extraYamlEntries | nindent 6 }}
+# […]

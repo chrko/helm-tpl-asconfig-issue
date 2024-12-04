@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-config
+data:
+  {{- $currentContext := . }}
+  {{- range $path, $_ := $currentContext.Files.Glob "fluent-bit/conf/*" }}
+  {{ base $path }}: |-
+    {{- tpl ($currentContext.Files.Get $path) $currentContext | nindent 4 }}
+  {{- end }}

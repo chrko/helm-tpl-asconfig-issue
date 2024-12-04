@@ -1,0 +1,18 @@
+{{- define "tpl.files.glob.asConfig" -}}
+  {{- $context := required "Current chart context (including .Files)" .context -}}
+  {{- $glob := required "Glob pattern `.glob` must be set" .glob -}}
+
+  {{- $fileDict := dict -}}
+
+  {{- range $path, $_ := $context.Files.Glob $glob -}}
+    {{- $_ := set $fileDict (base $path) (tpl ($context.Files.Get $path) $context) -}}
+  {{- end -}}
+
+  {{- toYaml $fileDict -}}
+{{- end -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-config
+data: {{- include "tpl.files.glob.asConfig" (dict "context" . "glob" "fluent-bit/conf/*") | nindent 2 }}
