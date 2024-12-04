@@ -30,7 +30,7 @@ and dynamically include in a ConfigMap using the following snippet:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fb-config
+  name: fluent-bit-config
 data: {{- tpl (.Files.Glob "fluent-bit/conf/*").AsConfig . | nindent 2 }}
 ```
 
@@ -39,7 +39,6 @@ this leads to - on first look - unexpected results.
 
 In the following examples I'll take the actual fluent-bit configuration use case,
 but this is a general problem of this ("naive") templating approach.
-In certain important cases instead of spaces I use `·`.
 
 ## Examples
 
@@ -198,7 +197,8 @@ data:
 
 The missing spaces are caused by the order of invocation of `tpl` and `AsConfig` and the resulting blank manipulations.
 The `.AsConfig` already introduces 2 spaces and after this operation the templating is going to happen.
-So `tpl` is actually processing the following content:
+So `tpl` is actually processing the following content,
+and the result is again indented by spaces for the surrounding ConfigMap yaml definition.
 
 ```yaml
 fluent-bit.conf: |
@@ -225,8 +225,6 @@ fluent-bit.yaml: |
   # […]
 ```
 
-This is being templated and afterward again indented by spaces for the surrounding ConfigMap.
-
 ### Workaround 1 - Changing the config files
 
 So in case staying with `tpl (.Files.Glob "").AsConfig .` approach, the source files need to be modified to get the following data before invocation of `tpl`:
@@ -241,7 +239,7 @@ fluent-bit.conf: |
       # […]
 
   {{- if .Values.filters.extraEntries }}
-  {{ .Values.filters.extraEntries | indent 2 }}
+  {{- .Values.filters.extraEntries | nindent 2 }}
   {{- end }}
 
   # outputs etc.
@@ -271,7 +269,7 @@ data:
     [FILTER]
         Name kubernetes
         # […]
-      [FILTER]
+    [FILTER]
         Name record_modifier
         Match splunk
         Remove_key kubernetes
@@ -294,8 +292,8 @@ data:
 ### Workaround 2 - Change order of tpl and "AsConfig" #1
 
 Instead of modifying the source config files,
-you can manually do things in the correct order.
-This variant is not *exactly* the same as the input files (the extra line break at the end of `fluent-bit.conf`).
+you can (try to) do things in the correct order manually.  
+Note: This variant is not *exactly* the same as the input files, e.g. the extra line break at the end of `fluent-bit.conf`.
 
 ```yaml
 apiVersion: v1
