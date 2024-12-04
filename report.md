@@ -17,6 +17,8 @@
     * [Workaround 1 - Changing the config files](#workaround-1---changing-the-config-files)
     * [Workaround 2 - Change order of tpl and "AsConfig" #1](#workaround-2---change-order-of-tpl-and-asconfig-1)
     * [Workaround 3 - Change order of tpl and "AsConfig" #2](#workaround-3---change-order-of-tpl-and-asconfig-2)
+      * [Reusable helper template](#reusable-helper-template)
+  * [Proposals for remediation](#proposals-for-remediation)
 <!-- TOC -->
 
 I currently have the use case to template config files for fluent-bit.
