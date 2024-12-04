@@ -19,6 +19,7 @@
     * [Workaround 3 - Change order of tpl and "AsConfig" #2](#workaround-3---change-order-of-tpl-and-asconfig-2)
       * [Reusable helper template](#reusable-helper-template)
   * [Proposals for remediation](#proposals-for-remediation)
+  * [Used versions](#used-versions)
   * [Repo with the example files](#repo-with-the-example-files)
 <!-- TOC -->
 
@@ -436,6 +437,17 @@ In my mind I have the following proposals:
   so that calling this is less verbose and a central implementation is provided and tested.
 
 - Mark this as a non-issue/out of scope for Helm. I'm actually not sure that this is a valid approach and should be a supported use case.
+
+## Used versions
+
+Helm:
+`version.BuildInfo{Version:"v3.16.3", GitCommit:"cfd07493f46efc9debd9cc1b02a0961186df7fdf", GitTreeState:"", GoVersion:"go1.23.2"}`
+
+kubectl:
+```
+Client Version: v1.31.3
+Kustomize Version: v5.4.2
+```
 
 ## Repo with the example files
 
