@@ -1,7 +1,7 @@
-# Combination of tpl and .Files.Glob.AsConfig leads to blank issues
+# Combination of tpl and .Files.Glob.AsConfig leads to indentation issues
 
 <!-- TOC -->
-* [Combination of tpl and .Files.Glob.AsConfig leads to blank issues](#combination-of-tpl-and-filesglobasconfig-leads-to-blank-issues)
+* [Combination of tpl and .Files.Glob.AsConfig leads to indentation issues](#combination-of-tpl-and-filesglobasconfig-leads-to-indentation-issues)
   * [Examples](#examples)
     * [Example 1: fluent-bit classic configuration style](#example-1-fluent-bit-classic-configuration-style)
       * [Inputs](#inputs)
